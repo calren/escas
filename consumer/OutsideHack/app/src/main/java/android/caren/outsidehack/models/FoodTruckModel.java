@@ -1,15 +1,18 @@
 package android.caren.outsidehack.models;
 
+import android.graphics.drawable.Drawable;
+
 public class FoodTruckModel {
 
     private int id;
-    private String picture;
+    private int picture;
     private String type;
     private String location;
     private int ordersAhead;
     private String name;
 
-    public FoodTruckModel(int id, String picture, String type, String location, int ordersAhead, String name) {
+    public FoodTruckModel(int id, int picture, String type, String location, int ordersAhead,
+            String name) {
         this.id = id;
         this.picture = picture;
         this.type = type;
@@ -34,11 +37,11 @@ public class FoodTruckModel {
         this.name = name;
     }
 
-    public String getPicture() {
+    public int getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(int picture) {
         this.picture = picture;
     }
 

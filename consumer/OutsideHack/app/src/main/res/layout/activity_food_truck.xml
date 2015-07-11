@@ -2,14 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="android.caren.outsidehack.FoodTruckActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:id="@+id/food_truck_toggle_bar"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -21,15 +21,15 @@
                 android:id="@+id/food_truck_location_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/location"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:src="@drawable/location" />
 
         </RelativeLayout>
 
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
-            android:background="@android:color/darker_gray"/>
+            android:background="@android:color/darker_gray" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,11 +41,23 @@
                 android:id="@+id/food_truck_time_toggle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/clock"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true"
+                android:src="@drawable/clock" />
 
         </RelativeLayout>
 
     </LinearLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/food_truck_toggle_bar">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/food_truck_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
