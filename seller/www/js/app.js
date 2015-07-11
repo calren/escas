@@ -4,7 +4,7 @@
 // Angular modules 'starter' is the name of this angular module example (also
 // set in a <body> attribute in index.html) the 2nd parameter is an array of
 // 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'ngMaterial'])
 
   .run(function($ionicPlatform, $rootScope) {
     $rootScope._ = _;
@@ -18,4 +18,20 @@ angular.module('starter', ['ionic'])
         StatusBar.styleDefault();
       }
     });
+  })
+
+  .config(function($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('signIn', {
+        url: "/sign_in",
+        templateUrl: "templates/sign_in.html"
+      })
+      .state('orders', {
+        url: "/orders",
+        controller: 'OrdersCtrl',
+        templateUrl: "templates/orders.html"
+      });
+
+    $urlRouterProvider.otherwise('/orders');
   });

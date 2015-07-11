@@ -1,1 +1,20 @@
 /* Empty. Add your own CSS if you like */
+#orders .item-divider {
+  align-items: center;
+  display: flex;
+}
+
+#orders .md-button {
+  margin-left: auto;
+}
+
+#orders .card.ng-enter {
+@include transition(200 ms cubic-bezier(0.250, 0.100, 0.250, 1.000) all);
+  bottom: -100px;
+  opacity: 0;
+}
+
+#orders .card.ng-enter-active {
+  bottom: 0;
+  opacity: 1;
+}
