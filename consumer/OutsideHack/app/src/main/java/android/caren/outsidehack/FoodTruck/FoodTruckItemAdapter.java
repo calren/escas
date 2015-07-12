@@ -2,8 +2,11 @@ package android.caren.outsidehack.FoodTruck;
 
 import java.util.ArrayList;
 
+import android.caren.outsidehack.FoodTruckActivity;
+import android.caren.outsidehack.MenuActivity;
 import android.caren.outsidehack.R;
 import android.caren.outsidehack.models.FoodTruckModel;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -35,10 +38,11 @@ public class FoodTruckItemAdapter
     public void onBindViewHolder(FoodTruckItemAdapter.FoodTruckItemViewHolder holder, int position) {
         FoodTruckModel foodTruck = foodTruckModels.get(position);
 //        holder.numOfOrdersAhead.setText(foodTruck.getOrdersAhead());
-        holder.location.setText(foodTruck.getLocation());
+        holder.location.setText(foodTruck.getLocation() + " miles");
         holder.name.setText(foodTruck.getName());
         holder.type.setText(foodTruck.getType());
         holder.mainLayout.setBackgroundResource(foodTruck.getPicture());
+        holder.mainLayout.setOnClickListener(foodTruck.getOnClickListener());
     }
 
     @Override

@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:padding="10dp">
+            android:padding="10dp"
+            android:id="@+id/search_toggle">
 
             <ImageView
                 android:id="@+id/food_truck_location_toggle"

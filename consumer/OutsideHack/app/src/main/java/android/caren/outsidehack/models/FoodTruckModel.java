@@ -1,24 +1,27 @@
 package android.caren.outsidehack.models;
 
 import android.graphics.drawable.Drawable;
+import android.view.View;
 
 public class FoodTruckModel {
 
     private int id;
     private int picture;
     private String type;
-    private String location;
+    private double location;
     private int ordersAhead;
     private String name;
+    private View.OnClickListener onClickListener;
 
-    public FoodTruckModel(int id, int picture, String type, String location, int ordersAhead,
-            String name) {
+    public FoodTruckModel(int id, int picture, String type, double location, int ordersAhead,
+            String name, View.OnClickListener onClickListener) {
         this.id = id;
         this.picture = picture;
         this.type = type;
         this.location = location;
         this.ordersAhead = ordersAhead;
         this.name = name;
+        this.onClickListener = onClickListener;
     }
 
     public int getId() {
@@ -61,11 +64,15 @@ public class FoodTruckModel {
         this.ordersAhead = ordersAhead;
     }
 
-    public String getLocation() {
+    public double getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(double location) {
         this.location = location;
+    }
+
+    public View.OnClickListener getOnClickListener() {
+        return onClickListener;
     }
 }
