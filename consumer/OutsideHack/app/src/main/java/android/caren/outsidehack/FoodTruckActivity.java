@@ -22,6 +22,8 @@ public class FoodTruckActivity extends AppCompatActivity {
 
     ArrayList<FoodTruckModel> foodTruckModels;
 
+    FoodTruckItemAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class FoodTruckActivity extends AppCompatActivity {
 
         RecyclerView foodTrucksRecyclerView = (RecyclerView) findViewById(R.id.food_truck_list);
         foodTruckModels = getFoodTruckList();
-        final FoodTruckItemAdapter adapter = new FoodTruckItemAdapter(foodTruckModels);
+        adapter = new FoodTruckItemAdapter(foodTruckModels);
         foodTrucksRecyclerView.setAdapter(adapter);
         foodTrucksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -41,6 +43,8 @@ public class FoodTruckActivity extends AppCompatActivity {
 
             }
         });
+
+        handleIntent(getIntent());
     }
 
     @Override
@@ -95,6 +99,28 @@ public class FoodTruckActivity extends AppCompatActivity {
         @Override
         public int compare(FoodTruckModel o1, FoodTruckModel o2) {
             return Double.compare(o1.getLocation(), o2.getLocation());
+        }
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            System.out.println(query);
+            //use the query to search your data somehow
+            ArrayList<FoodTruckModel> all = getFoodTruckList();
+            for (FoodTruckModel ftm : all) {
+                if (!ftm.getType().toLowerCase().contains(query)) {
+                    foodTruckModels.remove(ftm);
+                }
+            }
+            adapter.notifyDataSetChanged();
         }
     }
 }

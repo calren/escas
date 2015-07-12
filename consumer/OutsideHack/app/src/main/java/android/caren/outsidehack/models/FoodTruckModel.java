@@ -14,7 +14,7 @@ public class FoodTruckModel {
     private View.OnClickListener onClickListener;
 
     public FoodTruckModel(int id, int picture, String type, double location, int ordersAhead,
-            String name, View.OnClickListener onClickListener) {
+                          String name, View.OnClickListener onClickListener) {
         this.id = id;
         this.picture = picture;
         this.type = type;
@@ -38,6 +38,36 @@ public class FoodTruckModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        FoodTruckModel that = (FoodTruckModel) o;
+
+        if (id != that.id) return false;
+        if (picture != that.picture) return false;
+        if (Double.compare(that.location, location) != 0) return false;
+        if (ordersAhead != that.ordersAhead) return false;
+        if (type != null ? !type.equals(that.type) : that.type != null) return false;
+        return !(name != null ? !name.equals(that.name) : that.name != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = id;
+        result = 31 * result + picture;
+        result = 31 * result + (type != null ? type.hashCode() : 0);
+        temp = Double.doubleToLongBits(location);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + ordersAhead;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 
     public int getPicture() {
