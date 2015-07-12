@@ -2,12 +2,17 @@ package android.caren.outsidehack;
 
 import java.util.ArrayList;
 
+import android.app.SearchManager;
 import android.caren.outsidehack.FoodTruck.FoodTruckItemAdapter;
 import android.caren.outsidehack.models.FoodTruckModel;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class FoodTruckActivity extends AppCompatActivity {
 
@@ -20,6 +25,22 @@ public class FoodTruckActivity extends AppCompatActivity {
         FoodTruckItemAdapter adapter = new FoodTruckItemAdapter(getFoodTruckList());
         foodTrucksRecyclerView.setAdapter(adapter);
         foodTrucksRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
     }
 
     public ArrayList<FoodTruckModel> getFoodTruckList() {
